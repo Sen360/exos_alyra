@@ -92,3 +92,16 @@ contract HelloWorld {
   }
 }
 
+Exercice - Whitelist
+
+pragma solidity 0.8.9;
+
+contract Whitelist {
+  mapping(address => bollean) whitelist;
+  event Authorized(address _address);
+  
+  function authorize(address _address) public {
+    whitelist[_address] = true;
+    emit Authorized(_address);
+  }
+}
