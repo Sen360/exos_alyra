@@ -130,26 +130,20 @@ Excercice banque décentralisée
 
 pragma solidity 0.8.9;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
-
 contract Bank {
     mapping(address => uint) private _balances;
-    using SafeMath for uint;
     
     function deposit(uint _amount) public {
-        require(msg.sender != address(0), "Can not deposit ether to the address 0");
-        _balances[msg.sender] = _balances[msg.sender].add(_amount);
-    }
+        require(msg.sender != address(0), "Can not deposir ether to the address 0");
+        _balances[msg.sender] += _balances[msg.sender];
+    } 
     
     function transfer(address _recipient, uint _amount) public {
         require(_recipient != address(0), "Can not transfer ether to the address 0");
-        require(_balances[msg.sender] >= _amount, "Not enough ether to transfer");
-        _balances[msg.sender] = _balances[msg.sender].sub(_amount);
-        _balances[_recipient] = _balances[_recipient].add(_amount);
+        require(_balances[msg.sender] >= _amount, "Not enough ethers to transfer");
     }
     
-    function balanceOf() public view returns(address _address) {
+    function balanceOf(addressé _address) public view returns(uint) {
         return _balances[msg.sender];
     }
-    
 }
