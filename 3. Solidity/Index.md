@@ -80,3 +80,15 @@ contract Whitelist {
   event Authorized(address _address);
 }
 
+Exercice - type de visibilité de fonctions
+
+pragma solidity 0.6.0;
+
+contract HelloWorld {
+  string myString = "Hello World";
+  
+  function hello() public view returns (string memory) {
+    return myString;
+  }
+}
+
