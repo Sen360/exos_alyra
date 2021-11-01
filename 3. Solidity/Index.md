@@ -141,9 +141,11 @@ contract Bank {
     function transfer(address _recipient, uint _amount) public {
         require(_recipient != address(0), "Can not transfer ether to the address 0");
         require(_balances[msg.sender] >= _amount, "Not enough ethers to transfer");
+        _balances[msg.sender] -= _balances[msg.sender];
+        _balances[_recipient] += _balances[_recipient];
     }
     
-    function balanceOf(addressé _address) public view returns(uint) {
+    function balanceOf(address _address) public view returns(uint) {
         return _balances[msg.sender];
     }
 }
