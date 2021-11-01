@@ -1,6 +1,6 @@
 Solidity
 
-pragma solidity 0.6.11;
+pragma solidity 0.8.9;
 
 contract Whitelist {
   mapping(address => bollean) whitelist;
