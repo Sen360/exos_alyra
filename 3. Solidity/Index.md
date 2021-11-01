@@ -149,3 +149,36 @@ contract Bank {
         return _balances[msg.sender];
     }
 }
+
+Exercice Système d'administration
+
+pragma solidity 0.8.9;
+
+contract Admin {
+    mapping(address => bool) _whitelist;
+    mapping(address => bool) _blacklist;
+    event Whitelisted(address _address);
+    event Blacklisted(address _address);
+    
+    function whitelist(address _address) public onlyOwner {
+        require(!_whitelist[_address], "The address is already whitelisted");
+        require(!_blacklist[_address], "The address is already blacklisted");
+        _whitelist[_address] = true;
+        emit Whitelisted(_address);
+    }
+    
+    function blacklist(address _address) public onlyOwner {
+        require(!_whitelist[_address], "The address is already whitelisted");
+        require(!_blacklist[_address], "The address is already blacklisted");
+        _whitelist[_address] = false;
+        emit Blacklisted(_address);
+    }
+    
+    function isWhitelisted(address _address) public view onlyOwner returns(bool) {
+        return _whitelist[_address];
+    }
+    
+     function isBlacklisted(address _address) public view onlyOwner returns(bool) {
+        return _blacklist[_address];
+    }
+}
