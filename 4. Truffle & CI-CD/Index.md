@@ -74,7 +74,7 @@ contract("Voting", ([owner, voter]) => {
 
     it('getWinningInfo', async () => {
         let winningProposalId;
-        winningProposalId = await VoterToken.winningProposalId(voter);
+        winningProposalId = await VoterToken.winningProposalId();
         assert.equal(winningProposalId, winningProposalId);
     });
 })
