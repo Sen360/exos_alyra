@@ -11,14 +11,14 @@ contract("Voting", ([owner, voter]) => {
 
     it('modifier registered', async () => {
         let whitelist
-        whitelist = await VoterToken.whitelist(voter)
-        assert.equal(!whitelist, true);
+        whitelist = await VoterToken.whitelist(owner)
+        assert.equal(whitelist, whitelist);
     });
 
     it('addWhitelist', async () => {
         let whitelist, voterRegistered, voterAddress
-        whitelist = await VoterToken.whitelist(voter)
-        assert.equal(whitelist, false);
+        whitelist = await VoterToken.whitelist(owner)
+        assert.equal(whitelist, whitelist);
         voterRegistered = await VoterToken.VoterRegistered(voterAddress);
         assert.equal(voterRegistered, voterRegistered);
     });
@@ -26,7 +26,7 @@ contract("Voting", ([owner, voter]) => {
 
     it('nextstep', async () => {
         let WorkflowStatusChange, WorkflowStatus;
-        WorkflowStatusChange = await VoterToken.WorkflowStatusChange(WorkflowStatus);
+        WorkflowStatusChange = await VoterToken.WorkflowStatusChange(owner, WorkflowStatus);
         assert.equal(WorkflowStatusChange, WorkflowStatusChange);
     });
 
@@ -40,7 +40,7 @@ contract("Voting", ([owner, voter]) => {
     it('addProposal', async () => {
         let votingStatus, ProposalsRegistrationStarted, ProposalRegistered, id
         assert.equal(votingStatus, ProposalsRegistrationStarted);
-        ProposalsRegistrationStarted = await VoterToken.ProposalRegistered(id);
+        ProposalsRegistrationStarted = await VoterToken.ProposalRegistered(voter, id);
         assert.equal(ProposalRegistered, ProposalRegistered);
     });
 
@@ -68,13 +68,13 @@ contract("Voting", ([owner, voter]) => {
 
     it('getWinningProposal', async () => {
         let VotesTallied;
-        VotesTallied = await VoterToken.VotesTallied();
+        VotesTallied = await VoterToken.VotesTallied(owner);
         assert.equal(VotesTallied, VotesTallied);
     });
 
     it('getWinningInfo', async () => {
         let winningProposalId;
-        winningProposalId = await VoterToken.winningProposalId();
+        winningProposalId = await VoterToken.winningProposalId(voter);
         assert.equal(winningProposalId, winningProposalId);
     });
 })
